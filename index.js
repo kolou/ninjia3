@@ -54,6 +54,16 @@ router.get("/api/getInfo", async (ctx) => {
   }
 });
 
+router.get("/api/getGift", async (ctx) => {
+  try {
+    const params = ctx.request.query;
+    const res = await axios.get(`https://statistics_1.pandadastudio.com/player/giftCode?uid=${params.uid}&code=${params.code}`);
+    ctx.body = res.data;
+  } catch (error) {
+    console.log({error})
+  }
+});
+
 // 小程序调用，获取微信 Open ID
 router.get("/api/wx_openid", async (ctx) => {
   if (ctx.request.headers["x-wx-source"]) {
