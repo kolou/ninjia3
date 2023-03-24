@@ -37,7 +37,17 @@ router.post("/api/count", async (ctx) => {
 // 获取计数
 router.get("/api/count", async (ctx) => {
   const result = await Counter.count();
-  const res = await axios("https://www.baidu.com");
+  const res = await axios.get("https://www.baidu.com").then(function (response) {
+    // handle success
+    console.log(response);
+  })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .finally(function () {
+      // always executed
+    });
   console.log(res)
   ctx.body = {
     code: 0,
