@@ -37,12 +37,10 @@ router.post("/api/count", async (ctx) => {
 // 获取计数
 router.get("/api/count", async (ctx) => {
   const result = await Counter.count();
-  const res = await axios.get("https://statistics_1.pandadastudio.com/player/simpleInfo?uid=100128032520");
 
   ctx.body = {
     code: 0,
     data: result,
-    res: res.data
   };
 });
 
