@@ -39,7 +39,8 @@ router.get("/api/count", async (ctx) => {
   const result = await Counter.count();
   const res = await axios.get("https://www.baidu.com").then(function (response) {
     // handle success
-    console.log(response);
+    console.log(response.code);
+    console.log(response.data);
   }).catch(function (error) {
     // handle error
     console.log(error);
