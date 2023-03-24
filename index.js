@@ -4,7 +4,8 @@ const logger = require("koa-logger");
 const bodyParser = require("koa-bodyparser");
 const fs = require("fs");
 const path = require("path");
-const { init: initDB, Counter } = require("./db");
+const fetch = require("node-fetch");
+const {init: initDB, Counter} = require("./db");
 
 const router = new Router();
 
@@ -17,8 +18,8 @@ router.get("/", async (ctx) => {
 
 // 更新计数
 router.post("/api/count", async (ctx) => {
-  const { request } = ctx;
-  const { action } = request.body;
+  const {request} = ctx;
+  const {action} = request.body;
   if (action === "inc") {
     await Counter.create();
   } else if (action === "clear") {
@@ -36,7 +37,7 @@ router.post("/api/count", async (ctx) => {
 // 获取计数
 router.get("/api/count", async (ctx) => {
   const result = await Counter.count();
-
+  const res = fetch("https://www.baidu.com");
   ctx.body = {
     code: 0,
     data: result,
